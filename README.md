@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# Configuración del Proyecto
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tener instalado:
+- _PostgreSQL:_
+_Cuando se instala postgresql instalar pgAdmin4_
+```
+https://www.postgresql.org/
+```
 
-## Available Scripts
+- _Postman_
+```
+https://www.postman.com/
+```
+- _(Recomendado) IntelliJ IDEA_
+```
+https://www.jetbrains.com/idea/
+```
 
-In the project directory, you can run:
+- _Maven_
+```
+https://www.youtube.com/watch?v=rl5-yyrmp-0 
+```
+- _Java_
 
-### `npm start`
+## Java / JDK
+- **Versión:** 17.0.12 LTS  
+- **Fecha de lanzamiento:** 2024-07-16
+_Link de la version:_
+```
+https://download.oracle.com/java/17/archive/jdk-17.0.12_windows-x64_bin.exe
+```
+## Spring Boot
+- **Puerto de la aplicación:** [http://localhost:8081]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Frontend
+- **Puerto de la aplicación:** [http://localhost:3000]
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Base de datos PostgreSQL
+- **Nombre de la DB:** grupo7_db  
+- **Contraseña:** 8080  
 
-### `npm test`
+- **Puerto de la aplicación:** [http://localhost:5432]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instalacion de dependencias 
+_En el frontEnd ejecutar en la terminal:_
+### `npm install`
 
-### `npm run build`
+_Solucion error react scripts is not recognized as an internal or external command_
+- Eliminar la linea `"react-scripts": "0.0.0"` en package.json 
+- Luego ejecutar `npm install react-scripts --save`
+- Finalmente verificar que aparezca `"react-scripts": "5.0.1"`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Dependencias pom
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
-### `npm run eject`
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## plugins pom
 
-## Learn More
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Postman 
+_(Hay que tener la base de datos corriendo)_
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Registrar Usuario 
+`POST` http://localhost:8081/auth/register
 
-### Code Splitting
+- _En `Body` seleccionar raw y JSON_
+	_Ingresar en raw:_
+	{
+  		"email": "mail@gmail.com",
+  		"password": "contraseña"
+	}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Logear Usuario
+`POST` http://localhost:8081/auth/login
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- _En `Body` seleccionar raw y JSON_
+	_Ingresar en raw:_
+	{
+  		"email": "mail@gmail.com",
+  		"password": "contraseña"
+	}
