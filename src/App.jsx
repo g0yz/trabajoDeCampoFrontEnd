@@ -16,7 +16,14 @@ function App() {
           <Routes>
             {/* Ruta inicial: si no está logueado, va a login, si sí, redirige al home */}
             <Route
-              path="/login"
+              path="/"
+              element={
+                usuario ? <Navigate to="/home" /> : <Navigate to="/LogIn" />
+              }
+            />
+            {/* Ruta para LogIn */}
+            <Route
+              path="/LogIn"
               element={
                 !usuario ? <LogIn setUsuario={setUsuario} /> : <Navigate to="/home" />
               }
