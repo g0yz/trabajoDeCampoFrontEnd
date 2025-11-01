@@ -1,6 +1,7 @@
 import './LogIn.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logIcon from '../../assets/log-icon.png';
 
 export default function LogIn({ setUsuario }) {
   const [email, setEmail] = useState(""); 
@@ -10,6 +11,7 @@ export default function LogIn({ setUsuario }) {
 
   const enviarDatos = async (evento) => {
     evento.preventDefault();
+
 
     try {
       const response = await fetch("http://localhost:8081/auth/login", {
@@ -34,40 +36,51 @@ export default function LogIn({ setUsuario }) {
     }
   };
 
+  const irARegistro = () => {
+    navigate("/SingUp");
+  };
+
   return (
     <div className='form' id='loginContainer'>
-      <h1 className='txt'> Iniciar Sesión </h1>
-      <form onSubmit={enviarDatos} className='formularioLogin'>
-        <label htmlFor='email' className='formLabel'>
-          <span>Email: </span>
-          <input
-            type='email'
-            id='email'
-            placeholder='example@mail.com'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </label>
+      <div id='irARegistrarUsu'>
+        <button onClick={irARegistro} type='button'><img className="logIcon" src={logIcon} alt="RegistrarUsuario" />
+        </button>
+      </div>
+      <div>
+        <h1 className='txt'> Iniciar Sesión </h1>
+        <form onSubmit={enviarDatos} className='formularioLogin'>
+          <label htmlFor='email' className='formLabel'>
+            <span>Email: </span>
+            <input
+              type='email'
+              id='email'
+              placeholder='example@mail.com'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </label>
 
-        <label htmlFor='password' className='formLabel'> 
-          <span>Contraseña:</span>
-          <input
-            type='password'
-            id='password'
-            placeholder='Contraseña'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          /> 
-        </label>
+          <label htmlFor='password' className='formLabel'> 
+            <span>Contraseña:</span>
+            <input
+              type='password'
+              id='password'
+              placeholder='Contraseña'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            /> 
+          </label>
 
-        <div className='boton'>
-          <button type="submit" className='botonIniciarSesion'>Iniciar Sesión</button>
-        </div>
-      </form>
+          <div className='boton'>
+            <button type="submit" className='botonIniciarSesion'>Iniciar Sesión</button>
+          </div>
+        
+        </form>
+        {mensaje && <p>{mensaje}</p>}
+      </div>
 
-      {mensaje && <p>{mensaje}</p>}
     </div>
   );
 }

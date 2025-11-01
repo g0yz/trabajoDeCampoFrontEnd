@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import LogIn from "./components/LogIn/LogIn";
+import SingUp from "./components/SingUp/SingUp";
 import Home from "./components/Home/Home";
 import "./App.css";
 
@@ -28,6 +29,12 @@ function App() {
                 !usuario ? <LogIn setUsuario={setUsuario} /> : <Navigate to="/home" />
               }
             />
+
+            <Route
+              path="/SingUp"
+              element={ !usuario ? <SingUp /> : <Navigate to="/home" /> }
+            />                
+
             {/* Ruta protegida para Home */}
             <Route
               path="/home"
