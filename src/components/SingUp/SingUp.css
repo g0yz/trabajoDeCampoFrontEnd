@@ -11,24 +11,22 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0D1B2A", endColorstr="#8192A6", GradientType=0);
 }
 
-#loginContainer{
-    width: 100rem;
-    height: 100rem;
-    max-width: 30rem;
-    max-height: 35rem;
-    border-radius: 3rem;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.61);
-    
-    /*background: #833AB4;
-    background: -webkit-linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
-    background: -moz-linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
-    background: linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833AB4", endColorstr="#FCB045", GradientType=0);
-    */
+#singUpContainer {
+  position: relative;
+  width: 100rem;
+  height: 100rem;
+  max-width: 30rem;
+  max-height: 40rem; 
+  border-radius: 3rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.61);
+}
+
+#singUpContainer .txt {
+    font-family: 'Abyssinica SIL, regular';
 }
 
 #email, #password, #confirmarPassword{
@@ -81,9 +79,6 @@
 
 }
 
-#loginContainer .txt {
-    font-family: 'Abyssinica SIL, regular';
-}
 
 #irARegistrarUsu {
   position: absolute;
@@ -91,6 +86,7 @@
   right: 0;
   margin: 0;
   padding: 0;
+  z-index: 10;
 }
 
 #irARegistrarUsu button {
