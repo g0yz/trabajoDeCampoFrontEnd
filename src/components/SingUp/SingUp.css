@@ -3,20 +3,13 @@
     padding: 0;
 }
 
-.App-header {
-    background: #0D1B2A;
-    background: -webkit-linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    background: -moz-linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    background: linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0D1B2A", endColorstr="#8192A6", GradientType=0);
-}
 
 #singUpContainer {
   position: relative;
   width: 100rem;
   height: 100rem;
   max-width: 30rem;
-  max-height: 40rem; 
+  max-height: 40rem;
   border-radius: 3rem;
   display: flex;
   justify-content: space-evenly;
@@ -26,7 +19,7 @@
 }
 
 #singUpContainer .txt {
-    font-family: 'Abyssinica SIL, regular';
+    font-family: 'Abyssinica SIL, regular', serif;
 }
 
 #email, #password, #confirmarPassword{
@@ -35,7 +28,6 @@
     padding: 3%;
     width: 80%;
     height: 100%;
-    max-height: 500rem;
     max-width: 200rem;
     max-height: 1.7rem;
     border-radius: 2rem;
@@ -51,19 +43,17 @@
 }
 
 .botonIniciarSesion{
-    padding: 4%;
-    padding-left: 7%;
-    padding-right: 7%;
+    padding: 4% 7%;
     margin-top: 2rem;
     border-radius: 3rem;
     border: black;
     background-color: #eae0d5;
-    font-family: 'Abyssinica SIL';
+    font-family: 'Abyssinica SIL', serif;
     font-size: 80%;
 }
 
 .botonIniciarSesion:hover{
-    background-color: #15616d; 
+    background-color: #15616d;
     color: rgb(255, 255, 255);
     cursor: pointer;
     transition: 0.2s;
@@ -75,10 +65,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
 
 }
 
+
+.form {
+    margin: auto auto;
+}
 
 #irARegistrarUsu {
   position: absolute;
@@ -92,15 +86,15 @@
 #irARegistrarUsu button {
   background-color: #e8e8e8;
   border: none;
-  border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem); 
-  padding: clamp(10px, 2.5vw, 20px) clamp(15px, 3vw, 25px); 
+  border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem);
+  padding: clamp(10px, 2.5vw, 20px) clamp(15px, 3vw, 25px);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  position: relative; 
-   
+  position: relative;
+
 }
 
 
@@ -111,22 +105,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.15); 
+  background-color: rgba(0, 0, 0, 0.15);
   opacity: 0;
   transition: all 0.3s ease;
-  pointer-events: none; 
+  pointer-events: none;
   border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem);
 }
 
 #irARegistrarUsu button:hover::after {
-  opacity: 1; 
+  opacity: 1;
 }
 
 .logIcon {
-    width: clamp(24px, 4vw, 35px); 
+    width: clamp(24px, 4vw, 35px);
     height: clamp(24px, 4vw, 35px);
     object-fit: contain;
-    position: relative; 
+    position: relative;
     z-index: 1;
     transition: all 0.3s ease;
 }
@@ -136,7 +130,7 @@
 }
 
 #irARegistrarUsu button:hover {
-  
+
   background-blend-mode: multiply;
 }
 
@@ -150,7 +144,7 @@
   #irARegistrarUsu button {
     padding: 12px 16px;
   }
-  
+
   .logIcon {
     width: 28px;
     height: 28px;
@@ -161,7 +155,7 @@
   #irARegistrarUsu button {
     padding: 10px 14px;
   }
-  
+
   .logIcon {
     width: 24px;
     height: 24px;

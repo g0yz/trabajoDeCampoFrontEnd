@@ -51,7 +51,7 @@ export default function SingUp() {
   };
 
     const irALogIn = () => {
-        navigate("/LogIn");
+        navigate("/login");
     };
 
   return (

@@ -3,13 +3,7 @@
     padding: 0;
 }
 
-.App-header {
-    background: #0D1B2A;
-    background: -webkit-linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    background: -moz-linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    background: linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0D1B2A", endColorstr="#8192A6", GradientType=0);
-}
+
 
 #loginContainer{
     width: 100rem;
@@ -79,6 +73,10 @@
     justify-content: center;
     
 
+}
+
+.form {
+    margin: auto auto;
 }
 
 #loginContainer .txt {
