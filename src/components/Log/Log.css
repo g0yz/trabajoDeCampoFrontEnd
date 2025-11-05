@@ -3,20 +3,34 @@
     padding: 0;
 }
 
-.App-header {
-    background: #0D1B2A;
-    background: -webkit-linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    background: -moz-linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    background: linear-gradient(24deg, rgba(13, 27, 42, 0.71) 4%, rgba(27, 38, 59, 1) 23%, rgba(70, 94, 122, 1) 64%, rgba(129, 146, 166, 0.71) 95%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0D1B2A", endColorstr="#8192A6", GradientType=0);
+
+
+#loginContainer{
+    width: 100rem;
+    height: 100rem;
+    max-width: 30rem;
+    max-height: 35rem;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.61);
+    
+    /*background: #833AB4;
+    background: -webkit-linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background: -moz-linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background: linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833AB4", endColorstr="#FCB045", GradientType=0);
+    */
 }
 
 #singUpContainer {
   position: relative;
   width: 100rem;
   height: 100rem;
-  max-width: 30rem;
-  max-height: 40rem; 
+  max-width: 31rem;
+  max-height: 41rem; 
   border-radius: 3rem;
   display: flex;
   justify-content: space-evenly;
@@ -25,21 +39,22 @@
   background-color: rgba(0, 0, 0, 0.61);
 }
 
-#singUpContainer .txt {
-    font-family: 'Abyssinica SIL, regular';
+#email, #password, #confirmarPassword{
+    margin: 1rem !important;
+    margin-left: 1% !important;
+    padding: 5% !important;
+    padding-right: 5% !important;
+    width: 95% !important;
+    height: 100% !important; 
+    max-height: 500rem !important;
+    max-width: 200rem !important;
+    max-height: 3rem !important;
+    border-radius: 2rem !important;
+    
 }
 
-#email, #password, #confirmarPassword{
-    margin: 1rem;
-    margin-left: 1%;
-    padding: 3%;
-    width: 80%;
-    height: 100%;
-    max-height: 500rem;
-    max-width: 200rem;
-    max-height: 1.7rem;
-    border-radius: 2rem;
-
+.form{
+  margin: auto auto;
 }
 
 .formLabel{
@@ -59,7 +74,7 @@
     border: black;
     background-color: #eae0d5;
     font-family: 'Abyssinica SIL';
-    font-size: 80%;
+    font-size: 3vh;
 }
 
 .botonIniciarSesion:hover{
@@ -79,6 +94,19 @@
 
 }
 
+#loginContainer .txt {
+    font-family: 'Abyssinica SIL, regular';
+    color: white;
+}
+
+#singUpContainer .txt {
+    font-family: 'Abyssinica SIL, regular';
+  color: white;
+  }
+
+.formLabel span {
+  color: white;
+}
 
 #irARegistrarUsu {
   position: absolute;
@@ -86,7 +114,6 @@
   right: 0;
   margin: 0;
   padding: 0;
-  z-index: 10;
 }
 
 #irARegistrarUsu button {

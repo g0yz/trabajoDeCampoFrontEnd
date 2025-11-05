@@ -1,0 +1,99 @@
+.home-body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    gap: 1.5rem;
+}
+
+.bienvenida{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    margin-top: 1.5rem;
+    font-family: "Times New Roman", Times, serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: white;
+}
+
+.bienvenida-titulo{
+    padding-top: 100rem;
+    font-weight: normal;
+    font-size: 4.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.bienvenida-descripcion {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.bienvenida p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.navegadores-inferiores-bienvenida {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.seccion_card_home {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+
+.card_home{
+    text-align: left;
+    padding:  1rem 2rem; 
+    background-color: rgba(91, 91, 91, 0.45);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 35%;
+    flex: 1;
+    max-width: 30rem;
+}
+
+.card_home_titulo {
+    align-self: flex-start;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    margin-bottom: 0.5rem;
+}
+
+.card_home_descr {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/*.desc-nav-bienv {*/
+/*    max-width: 2px;*/
+/*}*/
+
+@media (max-height: 900px) {
+    .bienvenida-titulo {
+        font-size: 3.5rem;
+    }
+    
+    .navegadores-inferiores-bienvenida {
+        gap: 1.5rem;
+    }
+    
+    .card_home {
+        padding: 1rem 1.5rem;
+    }
+    
+    .card_home_titulo {
+        font-size: 1.5rem;
+    }
+}

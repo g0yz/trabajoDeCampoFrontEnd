@@ -1,7 +1,7 @@
-import './LogIn.css';
+import '../Log.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logIcon from '../../assets/log-icon.png';
+import logIcon from '../../../assets/log-icon.png';
 
 export default function LogIn({ setUsuario }) {
   const [email, setEmail] = useState(""); 
@@ -24,8 +24,12 @@ export default function LogIn({ setUsuario }) {
       console.log("Respuesta del servidor:", data);
 
       if (response.ok && data.startsWith("Login exitoso")) {
-        setUsuario({ email, loggedIn: true }); 
-        navigate("/home"); // 👈 Redirige al Home
+        // Guardar la información del usuario 
+        const datosUsuario = { email, loggedIn: true };
+        // Esto ahora guardará automáticamente en localStorage
+        setUsuario({ datosUsuario }); 
+        // Redirige al Home
+        navigate("/home"); 
       } else {
         setMensaje(data);
       }
