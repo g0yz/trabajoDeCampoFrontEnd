@@ -23,7 +23,7 @@ export default function Home() {
 
                 <ComponenteHome className="homeCard" titulo="Personal" descr="Clasifica y sistematiza la información de los miembros del grupo."/>
             </div>
-
+            <br/>
             <div className="seccion_card_home">   
                 <ComponenteHome className="homeCard" titulo="Equipo" descr="Contiene el registro del equipamiento e infraestructura del grupo."/>
                 

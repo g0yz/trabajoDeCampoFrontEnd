@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logIcon from '../../../assets/log-icon.png';
 
-export default function LogIn({ setUsuario }) {
+export default function Login({ setUsuario }) {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
@@ -11,7 +11,6 @@ export default function LogIn({ setUsuario }) {
 
   const enviarDatos = async (evento) => {
     evento.preventDefault();
-
 
     try {
       const response = await fetch("http://localhost:8081/auth/login", {
@@ -29,7 +28,7 @@ export default function LogIn({ setUsuario }) {
         // Esto ahora guardará automáticamente en localStorage
         setUsuario({ datosUsuario }); 
         // Redirige al Home
-        navigate("/home"); 
+        navigate("/Home");
       } else {
         setMensaje(data);
       }
@@ -41,7 +40,7 @@ export default function LogIn({ setUsuario }) {
   };
 
   const irARegistro = () => {
-    navigate("/SingUp");
+    navigate("/Register");
   };
 
   return (

@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 import Documentacion from "./components/Documentacion/Documentacion";
 import Personal from "./components/Personal/Personal";
 import Grupos from "./components/Grupos/Grupos";
-import Equipo from "./components/Equipoo/Equipoo.jsx"; 
+import Equipo from "./components/Equipo/Equipo.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import "./App.css";
 
@@ -14,7 +14,7 @@ import "./App.css";
 function ContenedorApp({ usuario, setUsuario }) {
   const ubicacion = useLocation();
 // Verifica si la ubicación actual es LogIn o SingUp (para ver el fondo adecuado)
-  const estaEnLog = ubicacion.pathname === "/LogIn" || ubicacion.pathname === "/SingUp"; 
+  const estaEnLog = ubicacion.pathname === "/Login" || ubicacion.pathname === "/Register";
 
   return (
     // Contenedor principal de la aplicación con fondo condicional
@@ -29,25 +29,25 @@ function ContenedorApp({ usuario, setUsuario }) {
             <Route
               path="/"
               element={
-                usuario ? <Navigate to="/home" /> : <Navigate to="/LogIn" />
+                usuario ? <Navigate to="/Home" /> : <Navigate to="/Login" />
               }
             />
             {/* Ruta para LogIn */}
             <Route
-              path="/LogIn"
+              path="/Login"
               element={
                 !usuario ? <LogIn setUsuario={setUsuario} /> : <Navigate to="/home" />
               }
             />
           
             <Route
-              path="/SingUp"
+              path="/Register"
               element={ !usuario ? <SingUp /> : <Navigate to="/home" /> }
             />                
           
             {/* Ruta protegida para Home */}
             <Route
-              path="/home"
+              path="/Home"
               element={
                 usuario ? <Home usuario={usuario} /> : <Navigate to="/" />
               }
