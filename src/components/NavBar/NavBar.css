@@ -57,3 +57,13 @@ img {
   margin-left: 2rem;
   margin-right: .5rem;
 }
+
+.logOutImg:hover {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(109, 109, 109);
+  font-size: 1.8rem;
+  margin-left: 2rem;
+  margin-right: .5rem;
+}
