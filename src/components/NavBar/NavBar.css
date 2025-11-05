@@ -1,0 +1,49 @@
+#nav {
+    margin: 0;
+}
+
+.navColor {
+    background-color: #142133;
+    padding: 0; }
+  
+  #navbarNavDropdown {
+    justify-content: end;
+    padding-right: 20px; }
+  .secciones {
+    align-items: center;
+  }
+  .secciones li {
+    padding: 0px 10px 0px 10px; }
+  
+  #navbarDropdownMenuLink {
+    padding-right: 0; }
+  
+  .nav-item:hover {
+    background-color: rgba(217, 217, 217, 0.1);
+    border-radius: 1.2rem;
+    transition: .5s; }
+  
+  .dropdown {
+    margin-right: 20px; }
+  
+  .Logo {
+    margin: 0px 0px 0px 10px; }
+  
+  .logo {
+    max-width: 110px; }
+    .logo:hover {
+      max-width: 111px; }
+
+img {
+  margin-top: 3px;
+  max-width: 4rem;
+  border-radius: 30%;
+  margin-left: 20%;
+}
+
+.navbar-nav .nav-link {
+  color: white;            /* color del texto */
+  text-decoration: none;   /* sin subrayado */
+  font-weight: 500;
+  font-size: 1.3rem;
+}

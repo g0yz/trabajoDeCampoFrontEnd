@@ -1,7 +1,7 @@
-import './SingUp.css';
+import '../Log.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logIcon from '../../assets/log-icon.png';
+import logIcon from '../../../assets/log-icon.png';
 
 export default function SingUp() {
     const [email, setEmail] = useState(""); 
