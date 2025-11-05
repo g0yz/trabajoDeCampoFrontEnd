@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LogIn from "./components/Log/LogIn/LogIn.jsx";
 import SingUp from "./components/Log/SingUp/SingUp.jsx";
 import Home from "./components/Home/Home";
@@ -98,10 +98,29 @@ function ContenedorApp({ usuario, setUsuario }) {
 // Componente principal de la aplicación
 export default function App() {
   const [usuario, setUsuario] = useState(null);
+  
+  // Verificar si hay una sesión guardada al cargar la aplicación
+  useEffect(() => {
+    const usuarioGuardado = localStorage.getItem("usuario");
+    if (usuarioGuardado) {
+      setUsuario(JSON.parse(usuarioGuardado));
+    }
+  }, []);
 
+  // Función mejorada para manejar el login y guardar en localStorage
+  const manejarLogin = (datosUsuario) => {
+    setUsuario(datosUsuario);
+    localStorage.setItem("usuario", JSON.stringify(datosUsuario));
+  };
+
+  // Función mejorada para manejar el logout y limpiar localStorage
+  const manejarLogout = () => {
+    setUsuario(null);
+    localStorage.removeItem("usuario");
+  };
   return (
     <BrowserRouter>
-      <ContenedorApp usuario={usuario} setUsuario={setUsuario} />
+      <ContenedorApp usuario={usuario} setUsuario={manejarLogin} />
     </BrowserRouter>
   );
 }

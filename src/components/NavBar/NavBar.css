@@ -47,3 +47,13 @@ img {
   font-weight: 500;
   font-size: 1.3rem;
 }
+
+.logOutImg {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1.8rem;
+  margin-left: 2rem;
+  margin-right: .5rem;
+}

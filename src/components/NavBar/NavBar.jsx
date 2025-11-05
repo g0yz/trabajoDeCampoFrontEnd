@@ -1,9 +1,24 @@
 import './NavBar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/logoUTN.png';
+import LogoOutImg from '../../assets/cerrarSesion.png'
 import { Secciones } from './Secciones/Secciones.jsx';
 
-const NavBar = ( onLogout ) => {
+const NavBar = ( { onLogOut  } ) => {
+
+    const navigate = useNavigate();
+
+    const manejarLogout = () => {
+        // Limpiar localStorage
+        localStorage.removeItem("usuario");
+        // Llamar a la función de logout del padre si existe
+        if (onLogOut) {
+            onLogOut();
+        }
+        // Redirigir al login
+        navigate("/LogIn");
+    };
+
     return (
         <nav id="nav" className="navbar navbar-expand-lg navColor">
             {/* Logo de la pagina web en el navBar*/}
@@ -19,8 +34,13 @@ const NavBar = ( onLogout ) => {
             <div className="container-fluid">
                 <Secciones />
 
+            {/* Cerrar sesion*/}
+            <button onClick={manejarLogout} className='logOutImg'>
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+
             </div>
-        
+            
 
         </nav>
     );

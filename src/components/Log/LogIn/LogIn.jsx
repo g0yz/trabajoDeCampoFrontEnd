@@ -24,10 +24,12 @@ export default function LogIn({ setUsuario }) {
       console.log("Respuesta del servidor:", data);
 
       if (response.ok && data.startsWith("Login exitoso")) {
-        setUsuario({ email, loggedIn: true }); 
-        //localStorage.setItem("mailUsuario", email);
-        //localStorage.setItem("loguead", JSON.stringify(true));
-        navigate("/home"); // 👈 Redirige al Home
+        // Guardar la información del usuario 
+        const datosUsuario = { email, loggedIn: true };
+        // Esto ahora guardará automáticamente en localStorage
+        setUsuario({ datosUsuario }); 
+        // Redirige al Home
+        navigate("/home"); 
       } else {
         setMensaje(data);
       }
