@@ -1,27 +1,38 @@
 import '../Log.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logIcon from '../../../assets/log-icon.png';
+import Alerta from '../../Alertas/Alertas.jsx';
 
 export default function SingUp() {
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState("");
     const [confirmarPassword, setConfirmarPassword] = useState("");
-    const [mensaje, setMensaje] = useState("");
     const navigate = useNavigate();
+
+    const [alert, setAlert] = useState(null);
+
 
     const enviarDatos = async (evento) => {
     evento.preventDefault();
 
     // Validar que las contraseñas coincidan
     if (password !== confirmarPassword) {
-      setMensaje("Las contraseñas no coinciden");
+      setAlert({
+        type: 'info',
+        title: 'Contraseñas No Coinciden',
+        message: 'Por favor, inténtelo de nuevo.'
+      });
       return;
     }
 
     // Validar longitud mínima de contraseña
     if (password.length < 6) {
-      setMensaje("La contraseña debe tener al menos 6 caracteres");
+          setAlert({
+          type: 'info',
+          title: 'Contraseña Demasiado Corta',
+          message: 'La contraseña debe tener al menos 6 caracteres.'
+      });
       return;
     }
 
@@ -36,23 +47,44 @@ export default function SingUp() {
       console.log("Respuesta del servidor:", data);
 
     if (response.ok) {
-        setMensaje("Registro exitoso. Redirigiendo al inicio de sesión...");
+        setAlert({
+          type: 'exito',
+          title: 'Registro Exitoso',
+          message: 'Redirigiendo al inicio de sesión...'
+      });
         setTimeout(() => {
             navigate("/login"); // Redirige al login después del registro
         }, 2000);
       } else {
-        setMensaje(data);
+        setAlert({
+          type: 'error',
+          title: 'Error de Inicio de Sesión',
+          message: `No se pudo iniciar sesión. Detalle: ${data || `Error desconocido`}`
+      });
       }
 
     } catch (error) {
       console.error("Error en la conexión:", error);
-      setMensaje("Error de conexión con el servidor.");
+       setAlert({
+          type: 'advertencia',
+          title: 'Error de Conexión',
+          message: `No se pudo conectar con el servidor. Detalle: ${error.message || 'Error desconocido'}`
+      });
     }
   };
 
     const irALogIn = () => {
-        navigate("/LogIn");
+        navigate("/login");
     };
+
+    useEffect(() => {
+    if (alert && (alert.type === 'advertencia' || alert.type === 'exito') ) {
+      const timer = setTimeout(() => {
+        setAlert(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [alert]);
 
   return (
     <div className='form' id='singUpContainer'>
@@ -108,7 +140,15 @@ export default function SingUp() {
         
         </form>
         
-        {mensaje && <p className={mensaje.includes("exitoso") ? "mensajeExito" : "mensajeError"}>{mensaje}</p>}
+        
+        {alert && (
+          <Alerta
+            type={alert.type}
+            title={alert.title}
+            message={alert.message}
+            onAccept={() => setAlert(null)}
+          />
+        )}
 
       </div>
 

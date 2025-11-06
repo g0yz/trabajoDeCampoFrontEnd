@@ -20,7 +20,7 @@ const NavBar = ( { onLogOut  } ) => {
             onLogOut();
         }
         // Redirigir al login
-        navigate("/LogIn");
+        navigate("/login");
     };
 
     return (

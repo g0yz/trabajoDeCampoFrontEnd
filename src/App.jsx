@@ -14,7 +14,7 @@ import "./App.css";
 function ContenedorApp({ usuario, setUsuario }) {
   const ubicacion = useLocation();
 // Verifica si la ubicación actual es LogIn o SingUp (para ver el fondo adecuado)
-  const estaEnLog = ubicacion.pathname === "/LogIn" || ubicacion.pathname === "/SingUp"; 
+  const estaEnLog = ubicacion.pathname === "/login" || ubicacion.pathname === "/register"; 
 
   return (
     // Contenedor principal de la aplicación con fondo condicional
@@ -29,19 +29,19 @@ function ContenedorApp({ usuario, setUsuario }) {
             <Route
               path="/"
               element={
-                usuario ? <Navigate to="/home" /> : <Navigate to="/LogIn" />
+                usuario ? <Navigate to="/home" /> : <Navigate to="/login" />
               }
             />
             {/* Ruta para LogIn */}
             <Route
-              path="/LogIn"
+              path="/login"
               element={
                 !usuario ? <LogIn setUsuario={setUsuario} /> : <Navigate to="/home" />
               }
             />
           
             <Route
-              path="/SingUp"
+              path="/register"
               element={ !usuario ? <SingUp /> : <Navigate to="/home" /> }
             />                
           
@@ -56,7 +56,7 @@ function ContenedorApp({ usuario, setUsuario }) {
 
             {/*Ruta protegida para Documentacion*/}
             <Route
-              path="/Documentacion"
+              path="/documentacion"
               element={ 
                 usuario ? <Documentacion usuario={usuario} /> : <Navigate to="/" /> 
               }
@@ -64,7 +64,7 @@ function ContenedorApp({ usuario, setUsuario }) {
 
             {/*Ruta protegida para Personal*/}
             <Route
-              path="/Personal"
+              path="/personal"
               element={ 
                 usuario ? <Personal usuario={usuario} /> : <Navigate to="/" /> 
               }
@@ -72,7 +72,7 @@ function ContenedorApp({ usuario, setUsuario }) {
 
             {/*Ruta protegida para Grupo*/}
             <Route
-              path="/Grupos"
+              path="/grupos"
               element={ 
                 usuario ? <Grupos usuario={usuario} /> : <Navigate to="/" /> 
               }
@@ -80,7 +80,7 @@ function ContenedorApp({ usuario, setUsuario }) {
 
             {/*Ruta protegida para Equipo*/}
             <Route
-              path="/Equipo"
+              path="/equipo"
               element={ 
                 usuario ? <Equipo usuario={usuario} /> : <Navigate to="/" /> 
               }

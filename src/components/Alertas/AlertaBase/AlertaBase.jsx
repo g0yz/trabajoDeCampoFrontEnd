@@ -18,8 +18,12 @@ const AlertaBase = ({ img, tipo, titulo, mensaje, cancel, aceptar }) => {
             {cancel && (
                 <button className="btn-cancelar" onClick={cancel}>Cancelar</button>
             )}
+
+          {aceptar && (
             <button className="btn-aceptar" onClick={aceptar}>Aceptar</button>
-        </div>
+          )}
+
+          </div>
       </div>
         <div className="alerta-footer">
             

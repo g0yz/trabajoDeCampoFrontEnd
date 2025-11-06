@@ -1,13 +1,15 @@
 import '../Log.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logIcon from '../../../assets/log-icon.png';
+import Alerta from '../../Alertas/Alertas.jsx';
 
 export default function LogIn({ setUsuario }) {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
-  const [mensaje, setMensaje] = useState("");
   const navigate = useNavigate();
+
+  const [alert, setAlert] = useState(null);
 
   const enviarDatos = async (evento) => {
     evento.preventDefault();
@@ -31,18 +33,35 @@ export default function LogIn({ setUsuario }) {
         // Redirige al Home
         navigate("/home"); 
       } else {
-        setMensaje(data);
+        setAlert({
+          type: 'error',
+          title: 'Error de Inicio de Sesión',
+          message: `No se pudo iniciar sesión. Detalle: ${data || `Error desconocido`}`
+      });
       }
 
-    } catch (error) {
-      console.error("Error en la conexión:", error);
-      setMensaje("Error de conexión con el servidor.");
-    }
+    } catch (error) { 
+        console.error("Error durante la solicitud de inicio de sesión:", error);
+        setAlert({
+          type: 'advertencia',
+          title: 'Error de Conexión',
+          message: `No se pudo conectar con el servidor. Detalle: ${error.message || 'Error desconocido'}`
+      });
+      }    
   };
 
   const irARegistro = () => {
-    navigate("/SingUp");
+    navigate("/register");
   };
+
+    useEffect(() => {
+    if (alert && alert.type === 'advertencia') {
+      const timer = setTimeout(() => {
+        setAlert(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [alert]);
 
   return (
     <div className='form' id='loginContainer'>
@@ -82,7 +101,16 @@ export default function LogIn({ setUsuario }) {
           </div>
         
         </form>
-        {mensaje && <p>{mensaje}</p>}
+
+        {alert && (
+          <Alerta
+            type={alert.type}
+            title={alert.title}
+            message={alert.message}
+            onAccept={() => setAlert(null)}
+          />
+        )}
+
       </div>
 
     </div>
