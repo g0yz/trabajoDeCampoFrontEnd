@@ -1,12 +1,16 @@
 import './NavBar.css';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/logoUTN.png';
-import LogoOutImg from '../../assets/cerrarSesion.png'
+//import LogoOutImg from '../../assets/cerrarSesion.png'
 import { Secciones } from './Secciones/Secciones.jsx';
+import Alerta from '../Alertas/Alertas.jsx'
 
 const NavBar = ( { onLogOut  } ) => {
 
     const navigate = useNavigate();
+
+    const [alert, setAlert] = useState(null);
 
     const manejarLogout = () => {
         // Limpiar localStorage
@@ -35,9 +39,25 @@ const NavBar = ( { onLogOut  } ) => {
                 <Secciones />
 
             {/* Cerrar sesion*/}
-            <button onClick={manejarLogout} className='logOutImg'>
-                <i class="fa-solid fa-right-from-bracket"></i>
+            <button onClick={() => setAlert({
+                type: 'advertencia',
+                title: 'Atención',
+                message: 'Desea cerrar sesión?'
+                })} 
+            className='logOutImg'>
+                
+                <i className="fa-solid fa-right-from-bracket"></i>
             </button>
+
+             {alert && (
+                <Alerta
+                    type={alert.type}
+                    title={alert.title}
+                    message={alert.message}
+                    onClose={() => setAlert(null) }
+                    onAccept={() => { setAlert(null); manejarLogout(); }}
+                />
+            )}
 
             </div>
             
