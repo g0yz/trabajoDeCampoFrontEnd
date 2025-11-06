@@ -9,7 +9,7 @@ export const Secciones = () => {
             <ul className="navbar-nav secciones">
                 <li className="nav-item">
                     <Link className="nav-link" aria-current="page" to={"/documentacion"} >Documentación</Link>
-                </li>
+                </li> 
 
                 <li className="nav-item">
                     <Link className="nav-link" aria-current="page" to={"/personal"} >Personal</Link>
