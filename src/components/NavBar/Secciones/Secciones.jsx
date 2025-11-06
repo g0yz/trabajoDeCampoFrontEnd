@@ -8,19 +8,19 @@ export const Secciones = () => {
             {/* Link a las distintas rutas de la pagina web*/}
             <ul className="navbar-nav secciones">
                 <li className="nav-item">
-                    <Link className="nav-link" aria-current="page" to={"/Documentacion"} >Documentación</Link>
+                    <Link className="nav-link" aria-current="page" to={"/documentacion"} >Documentación</Link>
+                </li> 
+
+                <li className="nav-item">
+                    <Link className="nav-link" aria-current="page" to={"/personal"} >Personal</Link>
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" aria-current="page" to={"/Personal"} >Personal</Link>
+                    <Link className="nav-link" aria-current="page" to={"/grupos"} >Grupos</Link>
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" aria-current="page" to={"/Grupos"} >Grupos</Link>
-                </li>
-
-                <li className="nav-item">
-                    <Link className="nav-link" aria-current="page" to={"/Equipo"} >Equipo</Link>
+                    <Link className="nav-link" aria-current="page" to={"/equipo"} >Equipo</Link>
                 </li>
             </ul>
         
