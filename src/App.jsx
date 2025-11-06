@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 import Documentacion from "./components/Documentacion/Documentacion";
 import Personal from "./components/Personal/Personal";
 import Grupos from "./components/Grupos/Grupos";
-import Equipo from "./components/Equipoo/Equipoo.jsx"; 
+import Equipo from "./components/Equipo/Equipo.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import "./App.css";
 
@@ -47,7 +47,7 @@ function ContenedorApp({ usuario, setUsuario }) {
           
             {/* Ruta protegida para Home */}
             <Route
-              path="/home"
+              path="/Home"
               element={
                 usuario ? <Home usuario={usuario} /> : <Navigate to="/" />
               }

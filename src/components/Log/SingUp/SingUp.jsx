@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import logIcon from '../../../assets/log-icon.png';
 import Alerta from '../../Alertas/Alertas.jsx';
 
-export default function SingUp() {
+export default function Register() {
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState("");
     const [confirmarPassword, setConfirmarPassword] = useState("");

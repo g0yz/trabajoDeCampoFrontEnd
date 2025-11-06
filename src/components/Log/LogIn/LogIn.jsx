@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import logIcon from '../../../assets/log-icon.png';
 import Alerta from '../../Alertas/Alertas.jsx';
 
-export default function LogIn({ setUsuario }) {
+export default function Login({ setUsuario }) {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -13,7 +13,6 @@ export default function LogIn({ setUsuario }) {
 
   const enviarDatos = async (evento) => {
     evento.preventDefault();
-
 
     try {
       const response = await fetch("http://localhost:8081/auth/login", {
@@ -31,7 +30,7 @@ export default function LogIn({ setUsuario }) {
         // Esto ahora guardará automáticamente en localStorage
         setUsuario({ datosUsuario }); 
         // Redirige al Home
-        navigate("/home"); 
+        navigate("/home");
       } else {
         setAlert({
           type: 'error',
