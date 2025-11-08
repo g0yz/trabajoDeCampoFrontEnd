@@ -55,6 +55,16 @@
 
 .form{
   margin: auto auto;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.form.girar{
+  transform: rotateY(180deg);
+}
+
+.form > div {
+  backface-visibility: hidden;
 }
 
 .formLabel{
@@ -101,14 +111,14 @@
 
 #singUpContainer .txt {
     font-family: 'Abyssinica SIL, regular';
-  color: white;
+    color: white;
   }
 
 .formLabel span {
   color: white;
 }
 
-#irARegistrarUsu {
+.cambiarDeLog {
   position: absolute;
   top: 0;
   right: 0;
@@ -116,7 +126,7 @@
   padding: 0;
 }
 
-#irARegistrarUsu button {
+.cambiarDeLog button {
   background-color: #e8e8e8;
   border: none;
   border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem); 
@@ -131,7 +141,7 @@
 }
 
 
-#irARegistrarUsu button::after {
+.cambiarDeLog button::after {
   content: '';
   position: absolute;
   top: 0;
@@ -145,7 +155,7 @@
   border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem);
 }
 
-#irARegistrarUsu button:hover::after {
+.cambiarDeLog button:hover::after {
   opacity: 1; 
 }
 
@@ -158,11 +168,11 @@
     transition: all 0.3s ease;
 }
 
-#irARegistrarUsu button:hover .logIcon {
+.cambiarDeLog button:hover .logIcon {
     filter: brightness(0.85); /* Oscurece el icono */
 }
 
-#irARegistrarUsu button:hover {
+.cambiarDeLog button:hover {
   
   background-blend-mode: multiply;
 }
@@ -174,7 +184,7 @@
 
 
 @media screen and (max-width: 768px) {
-  #irARegistrarUsu button {
+  .cambiarDeLog button {
     padding: 12px 16px;
   }
   
@@ -185,7 +195,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  #irARegistrarUsu button {
+  .cambiarDeLog button {
     padding: 10px 14px;
   }
   

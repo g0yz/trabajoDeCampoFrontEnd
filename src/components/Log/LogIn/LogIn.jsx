@@ -8,6 +8,7 @@ export default function Login({ setUsuario }) {
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [girar, setGirar] = useState(false);
 
   const [alert, setAlert] = useState(null);
 
@@ -50,7 +51,10 @@ export default function Login({ setUsuario }) {
   };
 
   const irARegistro = () => {
-    navigate("/register");
+    setGirar(true);
+    setTimeout(() => {
+      navigate("/register");
+    }, 400); 
   };
 
     useEffect(() => {
@@ -63,8 +67,8 @@ export default function Login({ setUsuario }) {
   }, [alert]);
 
   return (
-    <div className='form' id='loginContainer'>
-      <div id='irARegistrarUsu'>
+    <div className={`form ${girar ? 'girar' : ''}`} id='loginContainer'>
+      <div className='cambiarDeLog'>
         <button onClick={irARegistro} type='button'><img className="logIcon" src={logIcon} alt="RegistrarUsuario" />
         </button>
       </div>

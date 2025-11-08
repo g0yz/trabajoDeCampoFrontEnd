@@ -9,6 +9,7 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [confirmarPassword, setConfirmarPassword] = useState("");
     const navigate = useNavigate();
+    const [girar, setGirar] = useState(false);
 
     const [alert, setAlert] = useState(null);
 
@@ -74,7 +75,10 @@ export default function Register() {
   };
 
     const irALogIn = () => {
-        navigate("/login");
+        setGirar(true);
+        setTimeout(() => {
+          navigate("/login");
+        }, 400);
     };
 
     useEffect(() => {
@@ -87,9 +91,9 @@ export default function Register() {
   }, [alert]);
 
   return (
-    <div className='form' id='singUpContainer'>
+    <div className={`form ${girar ? 'girar' : ''}`} id='singUpContainer'>
       
-      <div id='irARegistrarUsu'>
+      <div className='cambiarDeLog'>
         <button onClick={irALogIn}><img className="logIcon" src={logIcon} alt="RegistrarUsuario" />
         </button>
       </div>
