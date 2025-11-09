@@ -44,7 +44,8 @@ const NavBar = ( { onLogOut  } ) => {
                 title: 'Atención',
                 message: 'Desea cerrar sesión?'
                 })} 
-            className='logOutImg'>
+                
+                className='logOutImg'>
                 
                 <i className="fa-solid fa-right-from-bracket"></i>
             </button>
@@ -55,6 +56,7 @@ const NavBar = ( { onLogOut  } ) => {
                     title={alert.title}
                     message={alert.message}
                     onClose={() => setAlert(null) }
+                    onCancel={() => setAlert(null) }
                     onAccept={() => { setAlert(null); manejarLogout(); }}
                 />
             )}
