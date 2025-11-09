@@ -1,14 +1,14 @@
 import React from 'react';
 import '../Alertas.css';
 
-const AlertaBase = ({ img, tipo, titulo, mensaje,close, cancel, aceptar }) => {
+const AlertaBase = ({ img, tipo, titulo, mensaje, cancel, aceptar }) => {
   return (
     <div className={`alerta-overlay ${tipo}`}>
       <div className="alerta-contenedor">
         <div className="alerta-icono">
           <img src={img} alt="icono alerta" className="alerta-img" />
         </div>
-        <button className="alerta-cerrar" onClick={close}><i className="fa-solid fa-x"></i></button>
+        <button className="alerta-cerrar" onClick={cancel}><i className="fa-solid fa-x"></i></button>
 
         <h2 className="alerta-titulo">{titulo}</h2>
         <p className="alerta-mensaje">{mensaje}</p>
@@ -33,3 +33,18 @@ const AlertaBase = ({ img, tipo, titulo, mensaje,close, cancel, aceptar }) => {
 };
 
 export default AlertaBase;
+
+
+/*EJ USO DEL NAVBAR CERRAR SESION
+
+        {alert && (
+                <Alerta
+                    type={alert.type}
+                    title={alert.title}
+                    message={alert.message}
+                    onClose={() => setAlert(null) }  //Hace que aparezca la opcion de cancelar en la alerta
+                    onAccept={() => { setAlert(null); manejarLogout(); }}
+                />
+            )}
+
+*/

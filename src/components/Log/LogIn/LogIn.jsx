@@ -1,22 +1,19 @@
+import '../Log.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Log from '../Log.jsx';
+import logIcon from '../../../assets/log-icon.png';
 import Alerta from '../../Alertas/Alertas.jsx';
 
 export default function Login({ setUsuario }) {
-  //Creo las variable que van a tener la info que le voy a mandar a la BD para hacer las consultas
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
-  // Me permite navegar entre paginas
   const navigate = useNavigate();
-  //Creo la variable para poder usar la alertas
+
   const [alert, setAlert] = useState(null);
 
-  //Funcioin para enviar los datos al backEnd
   const enviarDatos = async (evento) => {
     evento.preventDefault();
 
-    //Se conecta con la BD para enviarle los datos del usuario
     try {
       const response = await fetch("http://localhost:8081/auth/login", {
         method: "POST",
@@ -24,39 +21,39 @@ export default function Login({ setUsuario }) {
         body: JSON.stringify({ email, password })
       });
 
-      //Espero la respuesta del servidor
       const data = await response.text();
       console.log("Respuesta del servidor:", data);
 
-      // Si el servidor responde ok el usuario se loguea
       if (response.ok && data.startsWith("Login exitoso")) {
+        // Guardar la información del usuario 
         const datosUsuario = { email, loggedIn: true };
+        // Esto ahora guardará automáticamente en localStorage
         setUsuario({ datosUsuario }); 
+        // Redirige al Home
         navigate("/home");
-      } else { // Si el servidor no responde ok se le notifica al usuario el error
-        //Setea lo que la alerta debe mostrar y el tipo de error
+      } else {
         setAlert({
           type: 'error',
           title: 'Error de Inicio de Sesión',
-          message: `${data || 'Error desconocido'}`
-        });
+          message: `No se pudo iniciar sesión. Detalle: ${data || `Error desconocido`}`
+      });
       }
 
     } catch (error) { 
-      //Error de conexion con el servidor 
-      console.error("Error durante la solicitud de inicio de sesión:", error);
-        
-      //Setea lo que la alerta debe mostrar y el tipo de error
-      setAlert({
-        type: 'advertencia',
-        title: 'Error de Conexión',
-        message: `No se pudo conectar con el servidor. Detalle: ${error.message || 'Error desconocido'}`
+        console.error("Error durante la solicitud de inicio de sesión:", error);
+        setAlert({
+          type: 'advertencia',
+          title: 'Error de Conexión',
+          message: `No se pudo conectar con el servidor. Detalle: ${error.message || 'Error desconocido'}`
       });
-    }    
+      }    
   };
 
-  useEffect(() => {
-    //Si el error es una advertencia (No se pudo conectar con el servidor) la alerta se mostrara durante 5 seg
+  const irARegistro = () => {
+    navigate("/register");
+  };
+
+    useEffect(() => {
     if (alert && alert.type === 'advertencia') {
       const timer = setTimeout(() => {
         setAlert(null);
@@ -66,50 +63,55 @@ export default function Login({ setUsuario }) {
   }, [alert]);
 
   return (
-    //Le digo al Log que estoy en el LogIn
-    <Log isLogin={true}>
-      <h1 className='txt'>Iniciar Sesión</h1>
-      
-      <form onSubmit={enviarDatos} className='formularioLogin'>
-        <label htmlFor='login-email' className='formLabel'>
-          <span>Email:</span>
-          <input
-            type='email'
-            id='login-email'
-            placeholder='example@mail.com'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
+    <div className='form' id='loginContainer'>
+      <div id='irARegistrarUsu'>
+        <button onClick={irARegistro} type='button'><img className="logIcon" src={logIcon} alt="RegistrarUsuario" />
+        </button>
+      </div>
+      <div>
+        <h1 className='txt'> Iniciar Sesión </h1>
+        <form onSubmit={enviarDatos} className='formularioLogin'>
+          <label htmlFor='email' className='formLabel'>
+            <span>Email: </span>
+            <input
+              type='email'
+              id='email'
+              placeholder='example@mail.com'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </label>
+
+          <label htmlFor='password' className='formLabel'> 
+            <span>Contraseña:</span>
+            <input
+              type='password'
+              id='password'
+              placeholder='Contraseña'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            /> 
+          </label>
+
+          <div className='boton'>
+            <button type="submit" className='botonIniciarSesion'>Iniciar Sesión</button>
+          </div>
+        
+        </form>
+
+        {alert && (
+          <Alerta
+            type={alert.type}
+            title={alert.title}
+            message={alert.message}
+            onAccept={() => setAlert(null)}
           />
-        </label>
+        )}
 
-        <label htmlFor='login-password' className='formLabel'> 
-          <span>Contraseña:</span>
-          <input
-            type='password'
-            id='login-password'
-            placeholder='Contraseña'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          /> 
-        </label>
+      </div>
 
-        <div className='boton'>
-          <button type="submit" className='botonIniciarSesion'>Iniciar Sesión</button>
-        </div>
-      </form>
-
-      {/*Le mando los datos que se hayan registrado a la alerta, para que lo muestre*/}
-      {alert && (
-        <Alerta
-          type={alert.type}
-          title={alert.title}
-          message={alert.message}
-          onClose={() => setAlert(null)}
-          onAccept={() => setAlert(null)}
-        />
-      )}
-    </Log>
+    </div>
   );
 }
