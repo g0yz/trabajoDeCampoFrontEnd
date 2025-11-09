@@ -1,196 +1,288 @@
-*{
-    margin: 0;
-    padding: 0;
+/* Importar Animate.css */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
-
-
-#loginContainer{
-    width: 100rem;
-    height: 100rem;
-    max-width: 30rem;
-    max-height: 35rem;
-    border-radius: 3rem;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.61);
-    
-    /*background: #833AB4;
-    background: -webkit-linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
-    background: -moz-linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
-    background: linear-gradient(54deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833AB4", endColorstr="#FCB045", GradientType=0);
-    */
-}
-
+#loginContainer,
 #singUpContainer {
   position: relative;
-  width: 100rem;
-  height: 100rem;
-  max-width: 31rem;
-  max-height: 41rem; 
+  width: 100%;
+  max-width: 90vw;
+  height: auto;
+  min-height: 35rem;
   border-radius: 3rem;
   display: flex;
   justify-content: space-evenly;
   align-items: stretch;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.61);
+  transition: min-height 0.6s ease;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
-#email, #password, #confirmarPassword{
-    margin: 1rem !important;
-    margin-left: 1% !important;
-    padding: 5% !important;
-    padding-right: 5% !important;
-    width: 95% !important;
-    height: 100% !important; 
-    max-height: 500rem !important;
-    max-width: 200rem !important;
-    max-height: 3rem !important;
-    border-radius: 2rem !important;
-    
+#loginContainer {
+  max-width: min(30rem, 90vw);
+  min-height: 35rem;
 }
 
-.form{
+#singUpContainer {
+  max-width: min(31rem, 90vw);
+  min-height: 41rem;
+}
+
+.form {
   margin: auto auto;
+  perspective: 1000px;
+  --animate-duration: 0.8s;
 }
 
-.formLabel{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 1%;
-    padding: 3%;
+/* Ajustar velocidad de las animaciones de Animate.css */
+.animate__animated {
+  animation-duration: var(--animate-duration);
 }
 
-.botonIniciarSesion{
-    padding: 4%;
-    padding-left: 7%;
-    padding-right: 7%;
-    margin-top: 2rem;
-    border-radius: 3rem;
-    border: black;
-    background-color: #eae0d5;
-    font-family: 'Abyssinica SIL';
-    font-size: 3vh;
+/* Asegurar que el formulario mantenga el estilo 3D */
+#loginContainer,
+#singUpContainer {
+  transform-style: preserve-3d;
 }
 
-.botonIniciarSesion:hover{
-    background-color: #15616d; 
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    transition: 0.2s;
-    border: black;
+.form-content {
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-.formularioLogin {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-
+/* Fade out del contenido durante la salida */
+.form-content.content-animating {
+  animation: fadeOutContent 0.4s ease-out forwards;
 }
 
-#loginContainer .txt {
-    font-family: 'Abyssinica SIL, regular';
-    color: white;
+/* Fade in del contenido durante la entrada */
+.animate__flipInY .form-content {
+  animation: fadeInContent 0.6s ease-in forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
 }
 
-#singUpContainer .txt {
-    font-family: 'Abyssinica SIL, regular';
-  color: white;
+@keyframes fadeOutContent {
+  from {
+    opacity: 1;
+    transform: scale(1);
   }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#login-email,
+#login-password,
+#register-email,
+#register-password,
+#register-confirmar-password {
+  margin: 1rem 0 !important;
+  padding: 1rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 3rem !important;
+  border-radius: 2rem !important;
+  box-sizing: border-box;
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+}
 
 .formLabel span {
   color: white;
+  margin-bottom: 0.5rem;
+  font-size: clamp(14px, 2.5vw, 16px);
 }
 
-#irARegistrarUsu {
+.botonIniciarSesion {
+  padding: clamp(10px, 3vw, 16px) clamp(20px, 5vw, 40px);
+  margin-top: 2rem;
+  border-radius: 3rem;
+  border: none;
+  background-color: #eae0d5;
+  font-family: 'Abyssinica SIL';
+  font-size: clamp(16px, 3vh, 20px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 250px;
+}
+
+.botonIniciarSesion:hover {
+  background-color: #15616d;
+  color: rgb(255, 255, 255);
+  border: none;
+  transform: scale(1.05);
+}
+
+.formularioLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.boton {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#loginContainer .txt,
+#singUpContainer .txt {
+  font-family: 'Abyssinica SIL, regular';
+  color: white;
+  font-size: clamp(24px, 5vw, 32px);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cambiarDeLog {
   position: absolute;
   top: 0;
   right: 0;
   margin: 0;
   padding: 0;
+  z-index: 10;
 }
 
-#irARegistrarUsu button {
+.cambiarDeLog button {
   background-color: #e8e8e8;
   border: none;
-  border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem); 
-  padding: clamp(10px, 2.5vw, 20px) clamp(15px, 3vw, 25px); 
+  border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem);
+  padding: clamp(10px, 2.5vw, 20px) clamp(15px, 3vw, 25px);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  position: relative; 
-   
+  position: relative;
 }
 
-
-#irARegistrarUsu button::after {
+.cambiarDeLog button::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.15); 
+  background-color: rgba(0, 0, 0, 0.15);
   opacity: 0;
   transition: all 0.3s ease;
-  pointer-events: none; 
+  pointer-events: none;
   border-radius: 0 min(5vw, 3rem) 0 min(5vw, 3rem);
 }
 
-#irARegistrarUsu button:hover::after {
-  opacity: 1; 
+.cambiarDeLog button:hover::after {
+  opacity: 1;
 }
 
 .logIcon {
-    width: clamp(24px, 4vw, 35px); 
-    height: clamp(24px, 4vw, 35px);
-    object-fit: contain;
-    position: relative; 
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-#irARegistrarUsu button:hover .logIcon {
-    filter: brightness(0.85); /* Oscurece el icono */
-}
-
-#irARegistrarUsu button:hover {
-  
-  background-blend-mode: multiply;
-}
-
-#loginContainer {
+  width: clamp(24px, 4vw, 35px);
+  height: clamp(24px, 4vw, 35px);
+  object-fit: contain;
   position: relative;
-
+  z-index: 1;
+  transition: all 0.3s ease;
 }
 
+.cambiarDeLog button:hover .logIcon {
+  filter: brightness(0.85);
+}
+
+.cambiarDeLog button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
 
 @media screen and (max-width: 768px) {
-  #irARegistrarUsu button {
+  #loginContainer,
+  #singUpContainer {
+    min-height: auto;
+    padding: 1.5rem 1rem;
+  }
+
+  #loginContainer {
+    max-width: 95vw;
+  }
+
+  #singUpContainer {
+    max-width: 95vw;
+  }
+
+  .cambiarDeLog button {
     padding: 12px 16px;
   }
-  
+
   .logIcon {
     width: 28px;
     height: 28px;
   }
+
+  .botonIniciarSesion {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  #irARegistrarUsu button {
-    padding: 10px 14px;
+  #loginContainer,
+  #singUpContainer {
+    border-radius: 2rem;
+    padding: 1rem 0.5rem;
   }
-  
+
+  .cambiarDeLog button {
+    padding: 10px 14px;
+    border-radius: 0 2rem 0 2rem;
+  }
+
   .logIcon {
     width: 24px;
     height: 24px;
+  }
+
+  #login-email,
+  #login-password,
+  #register-email,
+  #register-password,
+  #register-confirmar-password {
+    border-radius: 1.5rem !important;
+    min-height: 2.5rem !important;
+  }
+
+  .formLabel {
+    padding: 0.5rem;
   }
 }
