@@ -1,0 +1,179 @@
+.perfil-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.perfil-contenedor {
+  position: relative;
+  background: linear-gradient(135deg, #287aba 0%, #0c3376 100%);
+/*
+background: #020024;
+background: -webkit-linear-gradient(25deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+background: -moz-linear-gradient(25deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+background: linear-gradient(25deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=0);
+*/
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
+}
+
+.infoUsuario {
+    display: flex;
+    margin: 1rem auto 1rem auto;
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.perfil-cerrar {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 12px;
+}
+
+.perfil-cerrar:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.perfil-avatar {
+  width: 16vh;
+  height: 16vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5% 0 0;
+  font-size: 16vh;
+  color: black;
+}
+
+.perfil-info {
+  text-align: center;
+margin-top: 1rem;
+  color: white;
+}
+
+.perfil-rol {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.perfil-grupo {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.perfil-email {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+}
+
+.perfil-botones {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-salir,
+.btn-logout {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.btn-salir {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  font-size: 1rem;
+  font-family: 'poppins', sans-serif;
+}
+
+.btn-salir:hover {
+  background-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-logout {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  font-family: 'poppins', sans-serif;
+}
+
+.btn-logout:hover {
+  background-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .perfil-contenedor {
+    width: 95%;
+    padding: 35px 25px;
+  }
+
+  .perfil-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+  }
+
+  .perfil-rol {
+    font-size: 18px;
+  }
+
+  .perfil-grupo {
+    font-size: 15px;
+  }
+
+  .perfil-email {
+    font-size: 13px;
+  }
+
+  .perfil-botones {
+    flex-direction: column;
+  }
+}

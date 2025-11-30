@@ -4,66 +4,135 @@
 
 .navColor {
     background-color: #142133;
-    padding: 0; }
+    padding: 0;
+}
   
-  #navbarNavDropdown {
+#navbarNavDropdown {
     justify-content: end;
-    padding-right: 20px; }
-  .secciones {
+    padding-right: 20px;
+}
+
+.secciones {
     align-items: center;
-  }
-  .secciones li {
-    padding: 0px 10px 0px 10px; }
+}
+
+.secciones li {
+    padding: 0px 10px 0px 10px;
+}
   
-  #navbarDropdownMenuLink {
-    padding-right: 0; }
+#navbarDropdownMenuLink {
+    padding-right: 0;
+}
   
-  .nav-item:hover {
+.nav-item:hover {
     background-color: rgba(217, 217, 217, 0.1);
     border-radius: 1.2rem;
-    transition: .5s; }
+    transition: .5s;
+}
+
+.nav-item.active {
+    background-color: rgba(217, 217, 217, 0.1);
+    border-radius: 1.2rem;
+}
   
-  .dropdown {
-    margin-right: 20px; }
+.dropdown {
+    margin-right: 20px;
+}
   
-  .Logo {
-    margin: 0px 0px 0px 10px; }
+.Logo {
+    margin: 0px 0px 0px 10px;
+}
   
-  .logo {
-    max-width: 110px; }
-    .logo:hover {
-      max-width: 111px; }
+.logo {
+    max-width: 110px;
+}
+
+.logo:hover {
+    max-width: 111px;
+}
 
 img {
-  margin-top: 3px;
-  max-width: 4rem;
-  border-radius: 30%;
-  margin-left: 20%;
+    margin-top: 3px;
+    max-width: 4rem;
+    border-radius: 30%;
+    margin-left: 20%;
 }
 
 .navbar-nav .nav-link {
-  color: white;            /* color del texto */
-  text-decoration: none;   /* sin subrayado */
-  font-weight: 500;
-  font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.3rem;
 }
 
+/* Botón de logout para pantallas grandes */
 .logOutImg {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-  font-size: 1.8rem;
-  margin-left: 2rem;
-  margin-right: .5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1.8rem;
+    margin-left: 2rem;
+    margin-right: .5rem;
 }
 
 .logOutImg:hover {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: rgb(109, 109, 109);
-  font-size: 1.8rem;
-  margin-left: 2rem;
-  margin-right: .5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgb(109, 109, 109);
+    font-size: 1.8rem;
+    margin-left: 2rem;
+    margin-right: .5rem;
+}
+
+/* Botón de logout para menú móvil */
+.logOutMobile {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white !important;
+    font-weight: 500;
+    font-size: 1.3rem;
+    text-align: left;
+    width: 100%;
+    padding: 0.5rem 1rem;
+}
+
+.logOutMobile:hover {
+    background-color: rgba(217, 217, 217, 0.1);
+    border-radius: 1.2rem;
+    transition: .5s;
+}
+
+/* Ajustes responsive */
+@media (max-width: 991px) {
+    #navbarNavDropdown {
+        padding-right: 0;
+    }
+    
+    .navbar-nav {
+        padding: 1rem 0;
+    }
+    
+    .secciones li {
+        padding: 0.5rem 1rem;
+    }
+    
+    img {
+        margin-left: 0;
+    }
+}
+
+/* Mejora del navbar toggler */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }

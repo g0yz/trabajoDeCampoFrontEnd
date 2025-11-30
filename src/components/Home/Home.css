@@ -3,6 +3,10 @@
     flex-direction: column;
     padding: 1rem 2rem;
     gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .bienvenida{
@@ -17,7 +21,6 @@
 }
 
 .bienvenida-titulo{
-    padding-top: 100rem;
     font-weight: normal;
     font-size: 4.5rem;
     padding: 0;
@@ -39,7 +42,7 @@
 .navegadores-inferiores-bienvenida {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    gap: 3rem;
 }
 
 .seccion_card_home {
@@ -47,21 +50,25 @@
     gap: 3rem;
     justify-content: center;
     flex-wrap: wrap;
-    
 }
-
 
 .card_home{
     text-align: left;
-    padding:  1rem 2rem; 
+    padding: 1rem 2rem; 
     background-color: rgba(91, 91, 91, 0.45);
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     color: white;
     width: 35%;
-    flex: 1;
     max-width: 30rem;
+    min-width: 280px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card_home:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .card_home_titulo {
@@ -75,10 +82,132 @@
     line-height: 1.4;
 }
 
-/*.desc-nav-bienv {*/
-/*    max-width: 2px;*/
-/*}*/
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .home-body {
+        padding: 1rem 1.5rem;
+    }
+    
+    .bienvenida-titulo {
+        font-size: 3.5rem;
+    }
+    
+    .bienvenida-descripcion,
+    .bienvenida p {
+        font-size: 1.3rem;
+    }
+}
 
+/* Tablets pequeñas - mantener 2 columnas pero ajustar */
+@media (max-width: 900px) {
+    .bienvenida-titulo {
+        font-size: 3rem;
+    }
+    
+    .bienvenida-descripcion,
+    .bienvenida p {
+        font-size: 1.2rem;
+    }
+    
+    .card_home {
+        width: 45%;
+        min-width: 250px;
+    }
+    
+    .seccion_card_home {
+        gap: 2rem;
+    }
+}
+
+/* Tablets y móviles - sin separación entre secciones */
+@media (max-width: 768px) {
+    .home-body {
+        padding: 1rem;
+    }
+    
+    .bienvenida-titulo {
+        font-size: 2.5rem;
+    }
+    
+    .bienvenida-descripcion,
+    .bienvenida p {
+        font-size: 1.1rem;
+    }
+    
+    /* Eliminar separación entre secciones */
+    .navegadores-inferiores-bienvenida {
+        gap: 1rem;
+    }
+    
+    .seccion_card_home {
+        gap: 1rem;
+    }
+    
+    /* Cards en columna única */
+    .card_home {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    .home-body {
+        padding: 0.75rem;
+        gap: 1.25rem;
+    }
+    
+    .bienvenida {
+        gap: 0.75rem;
+    }
+    
+    .bienvenida-titulo {
+        font-size: 2rem;
+    }
+    
+    .bienvenida-descripcion,
+    .bienvenida p {
+        font-size: 1rem;
+    }
+    
+    .navegadores-inferiores-bienvenida {
+        gap: 0.875rem;
+    }
+    
+    .seccion_card_home {
+        gap: 0.875rem;
+    }
+    
+    .card_home {
+        padding: 1rem 1.25rem;
+    }
+    
+    .card_home_titulo {
+        font-size: 1.1rem;
+    }
+    
+    .card_home_descr {
+        font-size: 0.9rem;
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .home-body {
+        padding: 0.5rem;
+    }
+    
+    .bienvenida-titulo {
+        font-size: 1.75rem;
+    }
+    
+    .card_home {
+        padding: 0.875rem 1rem;
+    }
+}
+
+/* Ajuste para pantallas con altura reducida */
 @media (max-height: 900px) {
     .bienvenida-titulo {
         font-size: 3.5rem;
@@ -94,5 +223,28 @@
     
     .card_home_titulo {
         font-size: 1.5rem;
+    }
+}
+
+/* Landscape en móviles */
+@media (max-height: 600px) and (orientation: landscape) {
+    .home-body {
+        gap: 1rem;
+    }
+    
+    .bienvenida {
+        gap: 0.5rem;
+    }
+    
+    .bienvenida-titulo {
+        font-size: 2rem;
+    }
+    
+    .navegadores-inferiores-bienvenida {
+        gap: 1rem;
+    }
+    
+    .seccion_card_home {
+        gap: 1rem;
     }
 }

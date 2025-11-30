@@ -1,0 +1,122 @@
+.subnav-personal {
+    background-color: #293545;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 1.5rem 1.5rem;
+}
+
+.subnav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.subnav-item-wrapper {
+    position: relative;
+}
+
+.subnav-item {
+    background: none;
+    border: none;
+    border-radius: .5rem .5rem 0 0;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.subnav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: .5rem .5rem 0 0;
+}
+
+.subnav-item.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    font-weight: 500;
+}
+
+/* Dropdown para Becarios */
+.subnav-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #d9dce0;
+    max-width: auto;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    margin-top: 0;
+}
+
+.subnav-dropdown ul {
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.subnav-dropdown li {
+    padding: 10px 20px;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.subnav-dropdown li:last-child {
+    border-bottom: none;
+}
+
+.subnav-dropdown li:hover {
+    background-color: #c5c9ce;
+}
+
+.subnav-dropdown li.active {
+    background-color: #b8bdc4;
+    color: #000;
+    font-weight: 500;
+}
+
+.subnav-dropdown li:first-child {
+    border-radius: 0;
+}
+
+.subnav-dropdown li:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .subnav-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+    }
+
+    .subnav-item {
+        width: 100%;
+        text-align: left;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .subnav-dropdown {
+        position: static;
+        width: 100%;
+        margin-top: 0;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #f8f9fa;
+    }
+
+    .subnav-dropdown li {
+        padding-left: 40px;
+        color: #555;
+    }
+}

@@ -30,8 +30,23 @@ export default function Login({ setUsuario }) {
 
       // Si el servidor responde ok el usuario se loguea
       if (response.ok && data.startsWith("Login exitoso")) {
-        const datosUsuario = { email, loggedIn: true };
-        setUsuario({ datosUsuario }); 
+        const datosUsuario = { 
+          email: email,
+          rol: "Rol",
+          grupo: "Sin grupo",
+          loggedIn: true
+          /*
+          CUANDO EL BACK ESTE LISTO 
+            email: data.usuario.email,
+            rol: data.usuario.rol || null,
+            grupo: data.usuario.grupo || null,
+            loggedIn: true
+          */
+        };
+        
+         localStorage.setItem("usuario", JSON.stringify(datosUsuario));
+
+        setUsuario( datosUsuario ); 
         navigate("/home");
       } else { // Si el servidor no responde ok se le notifica al usuario el error
         //Setea lo que la alerta debe mostrar y el tipo de error
