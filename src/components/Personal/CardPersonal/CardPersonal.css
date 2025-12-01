@@ -1,0 +1,315 @@
+.card-personal {
+  background: rgba(180, 190, 200, 0.85) ;
+  border-radius: 16px ;
+  padding: 0 ;
+  transition: all 0.3s ease ;
+  border: none ;
+  position: relative ;
+  display: flex ;
+  flex-direction: column ;
+  justify-content: center;
+  min-height: 8rem ;
+  max-height: 8rem ;
+  overflow: hidden ;
+  transform: none ;
+  z-index: 1;
+}
+
+/* Solo se expande cuando tiene la clase 'expanded' */
+.card-personal.expanded {
+  transform: scale(1.02) ;
+  z-index: 10;
+  min-height: 13rem;
+  max-height: 28rem ;
+  padding: 1rem 0rem 0rem 1rem ;
+}
+
+.card-personal.expanded .personal-header {
+  background-color: transparent ;
+  padding: 1rem 0rem 0rem 1rem ;
+  border-radius: 16px 16px 0 0 ;
+  position: relative ;
+  z-index: 1 ;
+}
+
+/* ==========================================================
+   NUEVAS CLASES QUE REEMPLAZAN LOS nth-child DEFECTUOSOS
+   ========================================================== */
+
+.card-personal.expanded.left-col {
+  transform: translateX(-40px) scale(1.02) ;
+  transform-origin: right center ;
+}
+
+.card-personal.expanded.center-col {
+  transform: scale(1.02) ;
+  transform-origin: center center ;
+}
+
+.card-personal.expanded.right-col {
+  transform: translateX(40px) scale(1.02) ;
+  transform-origin: left center ;
+}
+
+/* HEADER */
+.card-personal .personal-header {
+  display: flex ;
+  align-items: flex-start ;
+  flex-direction: column ;
+  gap: 1rem ;
+  position: relative ;
+  margin-bottom: 0 ;
+  transition: all 0.3s ;
+  border-radius: 16px 16px 0 0 ;
+  padding: 1rem 0rem 0rem 1rem ;
+}
+
+.card-personal .personal-title {
+  display: flex ;
+  flex-direction: row ;
+  align-items: center ;
+}
+
+.card-personal .personal-avatar {
+  width: 11dvh ;
+  height: 10dvh ;
+  border-radius: 8px ;
+  background: rgba(100, 100, 100, 0) ;
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  margin-right: 1rem ;
+  flex-shrink: 0 ;
+}
+
+.card-personal .personal-avatar img {
+  margin: 0;
+  width: 100% ;
+  height: 100% ;
+}
+
+.card-personal .personal-nombre {
+  color: #1a1a1a ;
+  font-size: 1.15rem ;
+  font-weight: 700 ;
+  flex: 1 ;
+  transition: color 0.3s ;
+}
+
+/* BODY */
+.card-personal .personal-body {
+  background-color: transparent ;
+  flex: 1 ;
+  display: flex ;
+  flex-direction: column ;
+  transition: color 0.3s ;
+  position: relative ;
+  padding: 0rem 0rem 0rem 1rem ;
+}
+
+.card-personal .personal-info-list {
+  list-style: none ;
+  padding-left: 0 ;
+  margin-top: 0.5rem ;
+  margin-bottom: 0.75rem ;
+  color: #000000 ;
+}
+
+.card-personal .personal-info-list li {
+  margin-bottom: 0.35rem ;
+  font-size: 0.88rem ;
+  line-height: 1.4 ;
+  display: flex ;
+  align-items: flex-start ;
+}
+
+.card-personal .personal-info-list li::before {
+  content: "•" ;
+  margin-right: 0.5rem ;
+  font-weight: bold ;
+  color: #2a2a2a ;
+  transition: color 0.3s ;
+}
+
+.card-personal .personal-info-list strong {
+  font-weight: 600 ;
+  margin-right: 0.25rem ;
+}
+
+/* BOTONES DE ACCIÓN */
+.card-personal .action-buttons-personal {
+  display: flex ;
+  flex-direction: column ;
+  gap: 0.5rem ;
+  position: absolute ;
+  right: 0% ;
+  top: 50% ;
+  transform: translateY(-50%) ;
+  background: rgba(13, 19, 33, 0.85) ;
+  padding: 0.5rem 0.4rem ;
+  border-radius: 8px ;
+  z-index: 20 ;
+  min-height: 100% ;
+}
+
+.card-personal .btn-icon-personal {
+  background: rgba(255, 255, 255, 0.95) ;
+  border: none ;
+  border-radius: 50% ;
+  width: 36px ;
+  height: 36px ;
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  cursor: pointer ;
+  transition: all 0.2s ;
+  font-size: 0.9rem ;
+}
+
+.card-personal .btn-icon-personal img {
+  width: 200% ;
+  height: 200% ;
+  position: relative ;
+  transform: translateY(80%) translateX(-50%) ;
+}
+
+.card-personal .btn-icon-personal:hover img {
+  transform: translateY(80%) translateX(-50%) scale(1.05) ;
+}
+
+.card-personal .btn-delete-personal {
+  background: rgba(0, 0, 0, 0.9) ;
+  color: white ;
+  font-size: 1.2rem ;
+  position: relative ;
+  transform: translateX(-150%) ;
+}
+
+.card-personal .btn-delete-personal:hover {
+  background: #dc3545 ;
+}
+
+.card-personal .btn-edit-personal {
+  background: rgba(255, 255, 255, 0) ;
+}
+
+.card-personal .btn-edit-personal:hover {
+  background: #e0e0e000 ;
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 1200px) {
+  /* En tablets: solo scale, sin mover horizontal */
+  .card-personal.expanded.left-col,
+  .card-personal.expanded.right-col {
+    transform: scale(1.02) ;
+  }
+}
+
+@media (max-width: 992px) {
+  .card-personal.expanded.left-col,
+  .card-personal.expanded.right-col {
+    transform: scale(1.02) ;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-personal .action-buttons-personal {
+    right: 0 ;
+    padding: 0.4rem 0.3rem ;
+  }
+
+  .card-personal .btn-icon-personal {
+    width: 32px ;
+    height: 32px ;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-personal {
+    border-radius: 12px ;
+  }
+
+  .card-personal.expanded {
+    padding: 0.75rem 0rem 0rem 0.75rem ;
+  }
+
+  .card-personal.expanded .personal-header {
+    padding: 0.75rem 0rem 0rem 0.75rem ;
+  }
+
+  .card-personal .personal-body {
+    padding: 0rem 0rem 0rem 0.75rem ;
+  }
+
+  .card-personal .personal-info-list li {
+    font-size: 0.82rem ;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-personal .personal-avatar {
+    width: 40px ;
+    height: 40px ;
+    margin-right: 0.75rem ;
+  }
+
+  .card-personal .personal-nombre {
+    font-size: 1.05rem ;
+  }
+
+  .card-personal .action-buttons-personal {
+    padding: 0.3rem 0.25rem ;
+  }
+
+  .card-personal .btn-icon-personal {
+    width: 28px ;
+    height: 28px ;
+  }
+}
+
+@media (max-width: 375px) {
+  .card-personal {
+    border-radius: 10px ;
+    min-height: 4.5rem ;
+    max-height: 7rem ;
+  }
+
+  .card-personal.expanded {
+    max-height: 15rem ;
+    padding: 0.5rem 0rem 0rem 0.5rem ;
+  }
+
+  .card-personal.expanded .personal-header {
+    padding: 0.5rem 0rem 0rem 0.5rem ;
+  }
+
+  .card-personal .personal-body {
+    padding: 0rem 0rem 0rem 0.5rem ;
+  }
+
+  .card-personal .personal-avatar {
+    width: 35px ;
+    height: 35px ;
+    margin-right: 0.5rem ;
+  }
+
+  .card-personal .personal-nombre {
+    font-size: 0.95rem ;
+  }
+
+  .card-personal .personal-info-list li {
+    font-size: 0.78rem ;
+    margin-bottom: 0.25rem ;
+  }
+
+  .card-personal .btn-icon-personal {
+    width: 26px ;
+    height: 26px ;
+  }
+
+  .card-personal .btn-delete-personal {
+    font-size: 1rem ;
+  }
+}
