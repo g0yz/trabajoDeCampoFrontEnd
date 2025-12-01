@@ -91,12 +91,61 @@ const NavBar = ( { onLogOut  } ) => {
         setIsOpen(false);
     };
 
-    const handleCategorySelect = (categoryId) => {
-        setSelectedCategory(categoryId);
-        // Aquí puedes emitir un evento o usar un callback para comunicar
-        // la categoría seleccionada al componente Personal
-        // Por ejemplo, usando un contexto o prop
-    };
+const handleCategorySelect = (categoryId) => {
+
+    let path = "/personal";
+
+    switch (categoryId) {
+        case "investigadores":
+            path = "/personal/investigadores";
+            break;
+
+        case "profesionales":
+            path = "/personal/profesionales";
+            break;
+
+        case "tecnico":
+            path = "/personal/tecnico-administrativo-apoyo";
+            break;
+
+        case "becarios":
+            path = "/personal/becarios";
+            break;
+
+        case "pasantes":
+            path = "/personal/becarios/pasantes";
+            break;
+
+        case "doctorado":
+            path = "/personal/becarios/doctorado";
+            break;
+
+        case "becarios-alumnos":
+            path = "/personal/becarios/alumnos";
+            break;
+
+        case "becario-graduado":
+            path = "/personal/becarios/graduado";
+            break;
+
+        case "maestria":
+            path = "/personal/becarios/maestria";
+            break;
+
+        case "proyectos-finales":
+            path = "/personal/becarios/proyectos-finales";
+            break;
+
+        default:
+            path = "/personal";
+            break;
+    }
+
+    navigate(path);
+    setShowSubNav(false);   // cerrar el submenú
+    setSelectedCategory(categoryId);
+};
+
 
     return (
         <>

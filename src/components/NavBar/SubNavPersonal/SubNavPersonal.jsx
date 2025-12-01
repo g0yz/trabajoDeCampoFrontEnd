@@ -47,8 +47,9 @@ const SubNavPersonal = ({ onCategorySelect, selectedCategory, onClose }) => {
             // Para otras categorías, cerrar el dropdown
             setDropdownLocked(false);
             setShowDropdown(false);
+            onCategorySelect(categoriaId);
         }
-        onCategorySelect(categoriaId);
+        
     };
 
     const handleMouseEnter = () => {

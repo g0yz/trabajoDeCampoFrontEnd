@@ -4,11 +4,25 @@ import LogIn from "./components/Log/LogIn/LogIn.jsx";
 import SingUp from "./components/Log/SingUp/SingUp.jsx";
 import Home from "./components/Home/Home";
 import Documentacion from "./components/Documentacion/Documentacion";
-import Personal from "./components/Personal/Personal";
 import Grupos from "./components/Grupos/Grupos";
 import Equipo from "./components/Equipo/Equipo.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import "./App.css";
+
+import Personal from "./components/Personal/Personal";
+//import Becarios from "./components/Personal/BecariosPersonalEnFormacion/BecariosPersonalEnFormacion.jsx";
+import Investigadores from "./components/Personal/Investigadores/Investigadores.jsx";
+import Profesionales from "./components/Personal/Profesionales/Profesionales.jsx";
+import TecnicoAdministrativoApoyo from "./components/Personal/TecnicoAdministrativoApoyo/TecnicoAdministrativoApoyo.jsx";
+
+// Subcategorías de Becarios (si existen como componentes)
+import Pasantes from "./components/Personal/BecariosPersonalEnFormacion/Pasantes.jsx";
+import Doctorado from "./components/Personal/BecariosPersonalEnFormacion/Doctorado.jsx";
+import BecariosAlumnos from "./components/Personal/BecariosPersonalEnFormacion/BecariosAlumnos.jsx";
+import BecarioGraduado from "./components/Personal/BecariosPersonalEnFormacion/BecarioGraduado.jsx";
+import Maestria from "./components/Personal/BecariosPersonalEnFormacion/Maestria.jsx";
+import ProyectosFinales from "./components/Personal/BecariosPersonalEnFormacion/ProyectosFinales.jsx";
+
 
 // Componente contenedor de la aplicación que maneja las rutas y el estado del usuario
 function ContenedorApp({ usuario, setUsuario }) {
@@ -62,14 +76,6 @@ function ContenedorApp({ usuario, setUsuario }) {
               }
             />
 
-            {/*Ruta protegida para Personal*/}
-            <Route
-              path="/personal"
-              element={ 
-                usuario ? <Personal usuario={usuario} /> : <Navigate to="/" /> 
-              }
-            />
-
             {/*Ruta protegida para Grupo*/}
             <Route
               path="/grupos"
@@ -86,8 +92,64 @@ function ContenedorApp({ usuario, setUsuario }) {
               }
             />
 
-          
-          
+            {/* --- PERSONAL COMPLETO --- */}
+            <Route
+              path="/personal"
+              element={usuario ? <Personal usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            {/* --- CATEGORÍAS PRINCIPALES --- */}
+            <Route
+              path="/personal/investigadores"
+              element={usuario ? <Investigadores usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/personal/profesionales"
+              element={usuario ? <Profesionales usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/personal/tecnico-administrativo-apoyo"
+              element={usuario ? <TecnicoAdministrativoApoyo usuario={usuario} /> : <Navigate to="/" />}
+            />
+          {/*
+            <Route
+              path="/personal/becarios"
+              element={usuario ? <Becarios usuario={usuario} /> : <Navigate to="/" />}
+            />
+            */}
+            
+            {/* --- SUBCATEGORÍAS DE BECARIOS --- */}
+            <Route
+              path="/personal/becarios/pasantes"
+              element={usuario ? <Pasantes usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/personal/becarios/doctorado"
+              element={usuario ? <Doctorado usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/personal/becarios/alumnos"
+              element={usuario ? <BecariosAlumnos usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/personal/becarios/graduado"
+              element={usuario ? <BecarioGraduado usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/personal/becarios/maestria"
+              element={usuario ? <Maestria usuario={usuario} /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/personal/becarios/proyectos-finales"
+              element={usuario ? <ProyectosFinales usuario={usuario} /> : <Navigate to="/" />}
+            />
           
           </Routes>
         </div>
