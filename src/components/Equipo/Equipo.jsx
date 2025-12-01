@@ -3,15 +3,22 @@ import React, { useState, useEffect } from 'react';
 import CardEquipo from './CardEquipo/CardEquipo';
 import './Equipo.css';
 import Alerta from '../Alertas/Alertas';
+import { Modal, CuerpoModalCrearForm, CuerpoModalEditarForm } from '../Modal';
 import AgregarEquipoImg from '../../assets/agregarEquipo.png';
 import BuscarImg from '../../assets/buscar.png';
 
 const Equipo = () => {
   const [equipos, setEquipos] = useState([]);
   const [equiposFiltrados, setEquiposFiltrados] = useState([]);
+  const [grupos, setGrupos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  
+  // Estados para modales
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [equipoToEdit, setEquipoToEdit] = useState(null);
   
   // Variable para usar las alertas
   const [alert, setAlert] = useState(null);
@@ -20,6 +27,7 @@ const Equipo = () => {
 
   useEffect(() => {
     fetchEquipos();
+    fetchGrupos();
   }, []);
 
   useEffect(() => {
@@ -65,9 +73,23 @@ const Equipo = () => {
     }
   };
 
+  const fetchGrupos = async () => {
+    try {
+      const response = await fetch('http://localhost:8081/AdministracionController/grupos/listarGrupos');
+      if (!response.ok) {
+        console.error('Error al cargar grupos');
+        return;
+      }
+      const data = await response.json();
+      setGrupos(data);
+    } catch (error) {
+      console.error('Error al cargar grupos:', error);
+    }
+  };
+
   const handleEdit = (equipo) => {
-    console.log('Editar equipo:', equipo);
-    // TODO: Implementar modal o navegación para editar
+    setEquipoToEdit(equipo);
+    setShowEditModal(true);
   };
 
   const handleDelete = async (oidEquipo) => {
@@ -77,7 +99,6 @@ const Equipo = () => {
       message: '¿Estás seguro de que deseas eliminar este equipo?'
     });
     
-    // Guardamos el oidEquipo para usarlo después de la confirmación
     window.equipoToDelete = oidEquipo;
   };
 
@@ -115,8 +136,195 @@ const Equipo = () => {
   };
 
   const handleAddEquipo = () => {
-    console.log('Agregar nuevo equipo');
-    // TODO: Implementar modal para agregar equipo
+    setShowCreateModal(true);
+  };
+
+  const handleCreateSubmit = async (formData) => {
+    // Convertir la fecha a formato ISO completo
+    const fechaISO = new Date(formData.fechaIncorporacion).toISOString();
+    
+    const payload = {
+      denominacion: formData.denominacion,
+      fechaIncorporacion: fechaISO,
+      montoInvertido: parseFloat(formData.montoInvertido),
+      descripcion: formData.descripcion || ''
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8081/AdministracionController/equipos/agregarEquipo/${formData.idGrupo}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      if (response.ok) {
+        setAlert({
+          type: 'exito',
+          title: 'Equipo creado',
+          message: 'El equipo ha sido creado correctamente'
+        });
+        setShowCreateModal(false);
+        fetchEquipos(); // Recargar la lista
+      } else {
+        setAlert({
+          type: 'error',
+          title: 'Error al crear',
+          message: 'No se pudo crear el equipo'
+        });
+      }
+    } catch (error) {
+      setAlert({
+        type: 'error',
+        title: 'Error al crear',
+        message: `${error.message || 'Error desconocido'}`
+      });
+    }
+  };
+
+  const handleEditSubmit = async (formData) => {
+    const payload = {
+      denominacion: formData.denominacion,
+      montoInvertido: parseFloat(formData.montoInvertido),
+      descripcion: formData.descripcion || ''
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:8081/AdministracionController/equipos/actualizarEquipo/${equipoToEdit.oidEquipo}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      if (response.ok) {
+        setAlert({
+          type: 'exito',
+          title: 'Equipo actualizado',
+          message: 'El equipo ha sido actualizado correctamente'
+        });
+        setShowEditModal(false);
+        setEquipoToEdit(null);
+        fetchEquipos(); // Recargar la lista
+      } else {
+        setAlert({
+          type: 'error',
+          title: 'Error al actualizar',
+          message: 'No se pudo actualizar el equipo'
+        });
+      }
+    } catch (error) {
+      setAlert({
+        type: 'error',
+        title: 'Error al actualizar',
+        message: `${error.message || 'Error desconocido'}`
+      });
+    }
+  };
+
+  // Configuración de campos para el formulario de creación
+  const createFields = [
+    {
+      name: 'idGrupo',
+      label: 'Grupo',
+      type: 'select',
+      required: true,
+      options: grupos.map(grupo => ({
+        value: grupo.oidGrupo,
+        label: `${grupo.nombreGrupo} (${grupo.sigla})`
+      }))
+    },
+    {
+      name: 'denominacion',
+      label: 'Denominación',
+      type: 'text',
+      required: true,
+      placeholder: 'Ej: Microscopio'
+    },
+    {
+      name: 'fechaIncorporacion',
+      label: 'Fecha de incorporación',
+      type: 'date',
+      required: true
+    },
+    {
+      name: 'montoInvertido',
+      label: 'Monto invertido',
+      type: 'number',
+      required: true,
+      placeholder: 'Ej: 5000'
+    },
+    {
+      name: 'descripcion',
+      label: 'Descripción',
+      type: 'textarea',
+      fullWidth: true,
+      placeholder: 'Descripción del equipamiento...'
+    }
+  ];
+
+  // Configuración de campos para el formulario de edición
+  const getEditFields = () => {
+    if (!equipoToEdit) return [];
+    
+    return [
+      {
+        name: 'grupo',
+        label: 'Grupo',
+        type: 'text',
+        disabled: true,
+        value: equipoToEdit.grupo?.nombreGrupo || 'Sin grupo'
+      },
+      {
+        name: 'denominacion',
+        label: 'Denominación',
+        type: 'text',
+        required: true
+      },
+      {
+        name: 'fechaIncorporacion',
+        label: 'Fecha de incorporación',
+        type: 'date',
+        disabled: true,
+        value: equipoToEdit.fechaIncorporacion 
+          ? new Date(equipoToEdit.fechaIncorporacion).toISOString().split('T')[0]
+          : ''
+      },
+      {
+        name: 'montoInvertido',
+        label: 'Monto invertido',
+        type: 'number',
+        required: true
+      },
+      {
+        name: 'descripcion',
+        label: 'Descripción',
+        type: 'textarea',
+        fullWidth: true
+      }
+    ];
+  };
+
+  const getEditInitialData = () => {
+    if (!equipoToEdit) return {};
+    
+    return {
+      grupo: equipoToEdit.grupo?.nombreGrupo || 'Sin grupo',
+      denominacion: equipoToEdit.denominacion || '',
+      fechaIncorporacion: equipoToEdit.fechaIncorporacion 
+        ? new Date(equipoToEdit.fechaIncorporacion).toISOString().split('T')[0]
+        : '',
+      montoInvertido: equipoToEdit.montoInvertido || 0,
+      descripcion: equipoToEdit.descripcion || ''
+    };
   };
 
   const indexOfLastEquipo = currentPage * equiposPerPage;
@@ -152,36 +360,33 @@ const Equipo = () => {
     <div className="equipo-container">
       <header className="equipo-header">
         <h1 className="equipo-title">Equipo</h1>
-        
       </header>
 
-            
-        <div className="search-add-container">
-          <div className="search-container">
-           <div className="search-box">
-             <input
-               type="text"
-               placeholder="Buscar Equipamiento..."
-               value={searchTerm}
-               onChange={(e) => setSearchTerm(e.target.value)}
-               className="search-input"
-             />
-             <button className="search-button">
-               <img src={BuscarImg} alt="Buscar" />
-             </button>
-            </div>
-          </div>
-          <div className="add-equipo-button">
-            <button 
-              className="btn-add-equipo" 
-              onClick={handleAddEquipo}
-              title="Agregar nuevo equipo"
-            >
-              <img src={AgregarEquipoImg} alt="Agregar Equipamiento" />
+      <div className="search-add-container">
+        <div className="search-container">
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Buscar Equipamiento..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+            <button className="search-button">
+              <img src={BuscarImg} alt="Buscar" />
             </button>
           </div>
         </div>
-
+        <div className="add-equipo-button">
+          <button 
+            className="btn-add-equipo" 
+            onClick={handleAddEquipo}
+            title="Agregar nuevo equipo"
+          >
+            <img src={AgregarEquipoImg} alt="Agregar Equipamiento" />
+          </button>
+        </div>
+      </div>
 
       <div className="equipo-content-wrapper">
         {currentPage > 1 && (
@@ -234,6 +439,52 @@ const Equipo = () => {
             </button>
           ))}
         </div>
+      )}
+
+      {/* Modal de Creación */}
+      {showCreateModal && (
+        <Modal
+          title="Agregar Equipamiento"
+          onClose={() => setShowCreateModal(false)}
+          onConfirm={() => {
+            // El submit se maneja desde el formulario
+            document.querySelector('.cuerpo-modal-form')?.requestSubmit();
+          }}
+          showCancel={true}
+          confirmText="Agregar"
+          cancelText="Cancelar"
+          size="large"
+        >
+          <CuerpoModalCrearForm
+            fields={createFields}
+            onSubmit={handleCreateSubmit}
+          />
+        </Modal>
+      )}
+
+      {/* Modal de Edición */}
+      {showEditModal && equipoToEdit && (
+        <Modal
+          title="Modificar Equipamiento"
+          onClose={() => {
+            setShowEditModal(false);
+            setEquipoToEdit(null);
+          }}
+          onConfirm={() => {
+            document.querySelector('.cuerpo-modal-form')?.requestSubmit();
+          }}
+          showCancel={true}
+          confirmText="Guardar cambios"
+          cancelText="Cancelar"
+          size="large"
+        >
+          <CuerpoModalEditarForm
+            fields={getEditFields()}
+            data={getEditInitialData()}
+            onSubmit={handleEditSubmit}
+            showComparison={true}
+          />
+        </Modal>
       )}
 
       {alert && (

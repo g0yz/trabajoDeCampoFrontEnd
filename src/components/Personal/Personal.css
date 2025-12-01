@@ -63,10 +63,12 @@
 }
 
 .personal-section-title {
-    color: white;
-    font-size: 3.5rem;
-    font-weight: 300;
-    font-family: Georgia, serif;
+  display: flex;
+  justify-content: start;
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 300;
+  font-family: Georgia, serif;
 }
 
 .btn-add-personal {
@@ -90,7 +92,7 @@
 
 .icon-add-personal {
   font-size: 2rem;
-  color: #4a5568;
+  color: #272727;
 }
 
 .personal-content-wrapper {
